@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import google.generativeai as genai
 import os
 from .forms import QuizSetForm
-# from jsonpath_ng import jsonpath, parse
+from .models import *
 import json
 
 # Configure API key
@@ -18,8 +18,9 @@ def add_sets(request):
             # Get data from the form
             question_count = form.cleaned_data['no_of_questions']
             topic = form.cleaned_data['topic']
+            set_number = form.cleaned_data['set_number']
             # Generate questions only once after the form is submitted
-            generate_questions(request, question_count, topic)
+            generate_questions(request, question_count, topic, set_number)
             # Redirect after form submission to prevent duplicate form resubmission
             return redirect('dashboard')
     else:
@@ -27,7 +28,7 @@ def add_sets(request):
 
     return render(request, "dashboard.html", {"form": form})
 
-def generate_questions(request, question_count, set_topic):
+def generate_questions(request, question_count, set_topic, set_number):
     # Check if the request is a POST to avoid multiple responses
     if request.method == 'POST':
         num_questions = question_count
@@ -60,26 +61,46 @@ def generate_questions(request, question_count, set_topic):
     if response.text.strip():
         try:
             # Parse the JSON response from the model
-            questions = json.loads(response.text)
-# Code to add file
+            questions_data = json.loads(response.text)
+            # Code to add file
             # Define the path where the JSON file will be stored
             file_path = os.path.join(os.getcwd(), 'generated_questions.json')
 
             # Write the questions to a JSON file
             with open(file_path, 'w') as json_file:
-                json.dump(questions, json_file, indent=4)  # Write with indentation for readability
-# Code to add file end
+                json.dump(questions_data, json_file, indent=4)  # Write with indentation for readability
 
             print(f"Questions successfully saved to {file_path}")
-            for question_data in questions:
+            
+            #storing in databae:
+            quiz_set = quizsets.objects.create(
+            set_number=set_number,
+            topic=set_topic,
+            question_count= question_count
+            )
+             # Prepare a list for bulk creation of questions
+            questions_list = []
+    
+            for question_data in questions_data:
+                # Extracting values from question_data
                 question_text = question_data["question"]
                 options = question_data["options"]
                 answer = question_data["answer"]
 
-                print(f"Question: {question_text}")
-                print(f"Options: A) {options['A']}, B) {options['B']}, C) {options['C']}, D) {options['D']}")
-                print(f"Answer: {answer}")
-                print("********************")
+                # Create a new question instance
+                question = questions(
+                    quiz_set=quiz_set,
+                    description=question_text,
+                    answer=answer,
+                    A=options["A"],
+                    B=options["B"],
+                    C=options["C"],
+                    D=options["D"],
+                )
+                questions_list.append(question)
+
+            # Bulk create the questions
+            questions.objects.bulk_create(questions_list)
         except json.JSONDecodeError as e:
             print(f"Failed to parse JSON: {e}")
     else:

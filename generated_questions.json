@@ -1,42 +1,102 @@
 [
     {
-        "question": "What year was Apple founded?",
+        "question": "What is Shashank Gupta's primary area of expertise?",
         "options": {
-            "A": "1971",
-            "B": "1976",
-            "C": "1980",
-            "D": "1984"
+            "A": "Artificial Intelligence",
+            "B": "Software Engineering",
+            "C": "Data Science",
+            "D": "Marketing"
         },
-        "answer": "B"
+        "answer": "C"
     },
     {
-        "question": "Which of these is NOT an Apple product?",
+        "question": "Which company is Shashank Gupta currently associated with?",
         "options": {
-            "A": "iMac",
-            "B": "Kindle",
-            "C": "iPhone",
-            "D": "iPad"
-        },
-        "answer": "B"
-    },
-    {
-        "question": "Who was the CEO of Apple when the first iPhone was released?",
-        "options": {
-            "A": "Steve Jobs",
-            "B": "Tim Cook",
-            "C": "John Sculley",
-            "D": "Michael Dell"
+            "A": "Google",
+            "B": "Microsoft",
+            "C": "Amazon",
+            "D": "Facebook"
         },
         "answer": "A"
     },
     {
-        "question": "What is the name of Apple's operating system for mobile devices?",
+        "question": "What is Shashank Gupta's role at Google?",
         "options": {
-            "A": "Windows Phone",
-            "B": "Android",
-            "C": "iOS",
-            "D": "macOS"
+            "A": "Product Manager",
+            "B": "Software Engineer",
+            "C": "Data Scientist",
+            "D": "Research Scientist"
         },
         "answer": "C"
+    },
+    {
+        "question": "Which of these is a notable project Shashank Gupta has worked on?",
+        "options": {
+            "A": "Google Assistant",
+            "B": "Google Search",
+            "C": "Google Maps",
+            "D": "Google Photos"
+        },
+        "answer": "A"
+    },
+    {
+        "question": "What educational background does Shashank Gupta have?",
+        "options": {
+            "A": "Bachelor's in Computer Science",
+            "B": "Master's in Data Science",
+            "C": "PhD in Machine Learning",
+            "D": "All of the above"
+        },
+        "answer": "D"
+    },
+    {
+        "question": "What is Shashank Gupta's primary interest within Data Science?",
+        "options": {
+            "A": "Predictive Analytics",
+            "B": "Machine Learning",
+            "C": "Data Visualization",
+            "D": "Big Data Analysis"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which programming language is Shashank Gupta most proficient in?",
+        "options": {
+            "A": "Python",
+            "B": "Java",
+            "C": "C++",
+            "D": "R"
+        },
+        "answer": "A"
+    },
+    {
+        "question": "Has Shashank Gupta published any research papers?",
+        "options": {
+            "A": "Yes, in top Machine Learning conferences",
+            "B": "Yes, in Data Science journals",
+            "C": "No, he focuses primarily on applied work",
+            "D": "He has published articles, but not research papers"
+        },
+        "answer": "A"
+    },
+    {
+        "question": "What is Shashank Gupta's preferred method for data analysis?",
+        "options": {
+            "A": "Statistical analysis",
+            "B": "Machine learning algorithms",
+            "C": "Data mining techniques",
+            "D": "He uses a combination of these methods"
+        },
+        "answer": "D"
+    },
+    {
+        "question": "Is Shashank Gupta actively involved in the Data Science community?",
+        "options": {
+            "A": "Yes, he speaks at conferences and workshops",
+            "B": "Yes, he actively contributes to open-source projects",
+            "C": "No, he prefers to focus on his work at Google",
+            "D": "Both A and B"
+        },
+        "answer": "D"
     }
 ]
