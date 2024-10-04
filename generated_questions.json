@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What year was Apple founded?",
+        "options": {
+            "A": "1971",
+            "B": "1976",
+            "C": "1980",
+            "D": "1984"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which of these is NOT an Apple product?",
+        "options": {
+            "A": "iMac",
+            "B": "Kindle",
+            "C": "iPhone",
+            "D": "iPad"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Who was the CEO of Apple when the first iPhone was released?",
+        "options": {
+            "A": "Steve Jobs",
+            "B": "Tim Cook",
+            "C": "John Sculley",
+            "D": "Michael Dell"
+        },
+        "answer": "A"
+    },
+    {
+        "question": "What is the name of Apple's operating system for mobile devices?",
+        "options": {
+            "A": "Windows Phone",
+            "B": "Android",
+            "C": "iOS",
+            "D": "macOS"
+        },
+        "answer": "C"
+    }
+]
