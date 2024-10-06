@@ -28,12 +28,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 API_KEY =os.getenv('API_KEY')
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -71,7 +72,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "Discord_QuizBot.wsgi.application"
+# WSGI_APPLICATION = "Discord_QuizBot.wsgi.application"
+ASGI_APPLICATION = "Discord_QuizBot.asgi.application"
 
 
 # Database

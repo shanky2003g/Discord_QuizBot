@@ -1,102 +1,102 @@
 [
     {
-        "question": "What is Shashank Gupta's primary area of expertise?",
+        "question": "What is the official language of India?",
         "options": {
-            "A": "Artificial Intelligence",
-            "B": "Software Engineering",
-            "C": "Data Science",
-            "D": "Marketing"
-        },
-        "answer": "C"
-    },
-    {
-        "question": "Which company is Shashank Gupta currently associated with?",
-        "options": {
-            "A": "Google",
-            "B": "Microsoft",
-            "C": "Amazon",
-            "D": "Facebook"
+            "A": "Hindi",
+            "B": "English",
+            "C": "Sanskrit",
+            "D": "Tamil"
         },
         "answer": "A"
     },
     {
-        "question": "What is Shashank Gupta's role at Google?",
+        "question": "Which of the following is NOT a state in India?",
         "options": {
-            "A": "Product Manager",
-            "B": "Software Engineer",
-            "C": "Data Scientist",
-            "D": "Research Scientist"
-        },
-        "answer": "C"
-    },
-    {
-        "question": "Which of these is a notable project Shashank Gupta has worked on?",
-        "options": {
-            "A": "Google Assistant",
-            "B": "Google Search",
-            "C": "Google Maps",
-            "D": "Google Photos"
-        },
-        "answer": "A"
-    },
-    {
-        "question": "What educational background does Shashank Gupta have?",
-        "options": {
-            "A": "Bachelor's in Computer Science",
-            "B": "Master's in Data Science",
-            "C": "PhD in Machine Learning",
-            "D": "All of the above"
-        },
-        "answer": "D"
-    },
-    {
-        "question": "What is Shashank Gupta's primary interest within Data Science?",
-        "options": {
-            "A": "Predictive Analytics",
-            "B": "Machine Learning",
-            "C": "Data Visualization",
-            "D": "Big Data Analysis"
+            "A": "Punjab",
+            "B": "Sri Lanka",
+            "C": "Rajasthan",
+            "D": "Karnataka"
         },
         "answer": "B"
     },
     {
-        "question": "Which programming language is Shashank Gupta most proficient in?",
+        "question": "What is the highest peak in India?",
         "options": {
-            "A": "Python",
-            "B": "Java",
-            "C": "C++",
-            "D": "R"
+            "A": "Mount Everest",
+            "B": "Kangchenjunga",
+            "C": "K2",
+            "D": "Lhotse"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which Indian city is known as the 'Pink City'?",
+        "options": {
+            "A": "Mumbai",
+            "B": "Jaipur",
+            "C": "Delhi",
+            "D": "Kolkata"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Who is the current Prime Minister of India?",
+        "options": {
+            "A": "Narendra Modi",
+            "B": "Rahul Gandhi",
+            "C": "Sonia Gandhi",
+            "D": "Manmohan Singh"
         },
         "answer": "A"
     },
     {
-        "question": "Has Shashank Gupta published any research papers?",
+        "question": "What is the national animal of India?",
         "options": {
-            "A": "Yes, in top Machine Learning conferences",
-            "B": "Yes, in Data Science journals",
-            "C": "No, he focuses primarily on applied work",
-            "D": "He has published articles, but not research papers"
+            "A": "Tiger",
+            "B": "Lion",
+            "C": "Elephant",
+            "D": "Peacock"
         },
         "answer": "A"
     },
     {
-        "question": "What is Shashank Gupta's preferred method for data analysis?",
+        "question": "Which Indian festival is celebrated with colorful powder and water?",
         "options": {
-            "A": "Statistical analysis",
-            "B": "Machine learning algorithms",
-            "C": "Data mining techniques",
-            "D": "He uses a combination of these methods"
+            "A": "Diwali",
+            "B": "Holi",
+            "C": "Dussehra",
+            "D": "Raksha Bandhan"
         },
-        "answer": "D"
+        "answer": "B"
     },
     {
-        "question": "Is Shashank Gupta actively involved in the Data Science community?",
+        "question": "What is the name of the famous Indian monument built by the Mughal emperor Shah Jahan?",
         "options": {
-            "A": "Yes, he speaks at conferences and workshops",
-            "B": "Yes, he actively contributes to open-source projects",
-            "C": "No, he prefers to focus on his work at Google",
-            "D": "Both A and B"
+            "A": "Taj Mahal",
+            "B": "Red Fort",
+            "C": "Qutub Minar",
+            "D": "Humayun's Tomb"
         },
-        "answer": "D"
+        "answer": "A"
+    },
+    {
+        "question": "Which Indian state is famous for its tea plantations?",
+        "options": {
+            "A": "Kerala",
+            "B": "Assam",
+            "C": "Karnataka",
+            "D": "Tamil Nadu"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "What is the name of the Indian classical dance form known for its intricate footwork and rhythmic patterns?",
+        "options": {
+            "A": "Bharatanatyam",
+            "B": "Kathakali",
+            "C": "Kathak",
+            "D": "Odissi"
+        },
+        "answer": "A"
     }
 ]
