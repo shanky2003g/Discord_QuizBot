@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 load_dotenv() 
 import os
 token = os.getenv('TOKEN')
-channel_id = os.getenv('ID')
+c_id = os.getenv('ID')
+print(c_id)
 # Enable necessary intents
 intents = discord.Intents.default()
 intents.messages = True  # Enable the messages intent
@@ -29,7 +30,7 @@ async def hello(ctx):
 
 @client.event
 async def on_member_join(member):
-    channel_id = channel_id
+    channel_id = int (c_id)
     channel = client.get_channel(channel_id)  # Retrieve the channel object using the ID
 
     if channel is not None:
@@ -49,7 +50,7 @@ async def on_member_join(member):
 
 @client.event
 async def on_member_remove(member):
-    channel_id = 1292049545248641067
+    channel_id = int(c_id)
     channel = client.get_channel(channel_id)  # Retrieve the channel object using the ID
 
     if channel is not None:
