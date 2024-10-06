@@ -2,7 +2,11 @@ import discord
 from discord.ext import commands
 import json
 import websockets
-
+from dotenv import load_dotenv
+load_dotenv() 
+import os
+token = os.getenv('TOKEN')
+channel_id = os.getenv('ID')
 # Enable necessary intents
 intents = discord.Intents.default()
 intents.messages = True  # Enable the messages intent
@@ -25,7 +29,7 @@ async def hello(ctx):
 
 @client.event
 async def on_member_join(member):
-    channel_id = 1292049545248641067
+    channel_id = channel_id
     channel = client.get_channel(channel_id)  # Retrieve the channel object using the ID
 
     if channel is not None:
@@ -112,7 +116,6 @@ async def set(ctx, set_number: str):
             await ctx.send(f"No questions found for set number {set_number}.")
             return
 
-        # Send each question with a 2-second gap
         for question in quiz_questions:
             # Constructing the message with question and options
             question_message = f"**{question['description']}**\n"
@@ -125,6 +128,6 @@ async def set(ctx, set_number: str):
         await ctx.send(f"An error occurred: {str(e)}")
 
 
-client.run('MTI5MjAzNTA2MDU5NzUyNjUyOA.Guc7wE.OaErahW3W3QOppDrK8pWpxiB3lHh9jYavZ7K9c')
+client.run(token)
 
 
