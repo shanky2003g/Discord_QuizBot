@@ -122,8 +122,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-bot/1.env
-Discord_QuizBot/2.env
 .env
 .venv
 env/
