@@ -19,3 +19,11 @@ class questions(models.Model):
     def __str__(self):
         return f"Question {self.pk} for {self.quiz_set.topic}"
     
+class resposnes(models.Model):
+    user_name = models.CharField(max_length=100)
+    answer = models.CharField(max_length=100)
+    time = models.IntegerField()
+    score = models.IntegerField()
+    set = models.ForeignKey('quizsets', related_name= 'responses', on_delete=models.CASCADE)
+    def _str_(self):
+            return f"Response of {self.user_name}"
