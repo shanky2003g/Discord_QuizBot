@@ -1,13 +1,13 @@
 import discord
 from discord.ext import commands
 import json
-import websockets
+import websockets,asyncio
 from dotenv import load_dotenv
+from discord.ui import Button, View
 load_dotenv() 
 import os
 token = os.getenv('TOKEN')
 c_id = os.getenv('ID')
-print(c_id)
 # Enable necessary intents
 intents = discord.Intents.default()
 intents.messages = True  # Enable the messages intent
@@ -84,16 +84,14 @@ async def sets(ctx):
 
 #Fetching questions and opions present in set as demanded by user 
 async def fetch_quiz_questions(set_number):
-    # print("weferver")
     async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
         await websocket.send(json.dumps({"action": "get_quiz_questions", "set_number": set_number}))
-        #  print("22222")
         count = await websocket.recv()
         data = json.loads(count)
         count = int(data["count"])
-        print(data)
+        # print(data)
         questions = []
-        print(count)
+        # print(count)
         while count > 0:
             response = await websocket.recv()
             count -= 1
@@ -107,6 +105,7 @@ async def fetch_quiz_questions(set_number):
 
 @client.command()
 async def set(ctx, set_number: str):
+    responses = ""
     try:
         # Validate that the input is a digit
         if not set_number.isdigit():
@@ -129,7 +128,38 @@ async def set(ctx, set_number: str):
             options = question['options']
             for key in ['A', 'B', 'C', 'D']:
                 question_message += f"{key}: {options[key]}\n"
-            await ctx.send(question_message)
+            # await ctx.send(question_message)
+            buttons = [
+                Button(label = 'A', style = discord.ButtonStyle.primary, custom_id ='A'),
+                Button(label = 'B', style = discord.ButtonStyle.primary, custom_id ='B'),
+                Button(label = 'C', style = discord.ButtonStyle.primary, custom_id ='C'),
+                Button(label ='D', style = discord.ButtonStyle.primary, custom_id ='D'),
+                Button(label = "SKIP", style = discord.ButtonStyle.secondary, custom_id = 'SKIP')
+            ]
+            #creating view for buttons
+            view = View()
+            for button in buttons:
+                view.add_item(button)
+            
+            #Defining callbsck when user interact with button(user hits the button)
+            async def button_callback(interaction: discord.Interaction):
+                nonlocal responses
+                button_label = interaction.data['custom_id']
+                if button_label == "SKIP":
+                    responses+= ' '
+                else:
+                    responses += button_label
+                await interaction.response.send_message(f'You selected: {button_label}', ephemeral=True)
+                view.stop()  # Stop the view after interaction
+            ##attach callbacks for each button
+            for button in buttons:
+                button.callback = button_callback
+
+            await ctx.send(question_message, view = view)
+            #wait for the user to press any button
+            await view.wait()
+            await asyncio.sleep(5)
+        # print(responses)
 
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")

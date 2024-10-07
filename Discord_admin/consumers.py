@@ -24,9 +24,11 @@ class QuizConsumer(AsyncWebsocketConsumer):
             set_number = data['set_number']
             questions_all = await self.get_questions_for_set(set_number)
             # print(questions_all)
+            # await self.send(json.dumps({"description": questions_all[0]["description"], "options": questions_all[0]["options"]}))
+            await self.send(json.dumps({ "count" :len(questions_all)}))
             for question in questions_all:
                 await self.send(json.dumps({"description": question["description"], "options": question["options"]}))
-                await asyncio.sleep(2)  # Delay of 2 seconds for each question
+                # await asyncio.sleep(2)  # Delay of 2 seconds for each question
 
     async def get_quiz_sets(self):
         try:

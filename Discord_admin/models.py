@@ -18,3 +18,4 @@ class questions(models.Model):
     D = models.CharField(max_length=255)  # Option D
     def __str__(self):
         return f"Question {self.pk} for {self.quiz_set.topic}"
+    
