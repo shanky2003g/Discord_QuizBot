@@ -84,14 +84,20 @@ async def sets(ctx):
 
 #Fetching questions and opions present in set as demanded by user 
 async def fetch_quiz_questions(set_number):
-    print("weferver")
+    # print("weferver")
     async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
         await websocket.send(json.dumps({"action": "get_quiz_questions", "set_number": set_number}))
-        print("22222")
+        #  print("22222")
+        count = await websocket.recv()
+        data = json.loads(count)
+        count = int(data["count"])
+        print(data)
         questions = []
-        while True:
+        print(count)
+        while count > 0:
             response = await websocket.recv()
-            print(response)
+            count -= 1
+            #print(response)
             data = json.loads(response)
             if "description" in data and "options" in data:
                 questions.append(data)
