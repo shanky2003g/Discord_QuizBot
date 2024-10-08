@@ -4,7 +4,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 from channels.db import database_sync_to_async
 import asyncio
-
+from .models import *
 class QuizConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
@@ -20,16 +20,47 @@ class QuizConsumer(AsyncWebsocketConsumer):
             await self.send_quiz_sets(quiz_sets)
 
 
-        if data['action'] == 'get_quiz_questions':
+        elif data['action'] == 'get_quiz_questions':
             set_number = data['set_number']
             questions_all = await self.get_questions_for_set(set_number)
-            # print(questions_all)
-            # await self.send(json.dumps({"description": questions_all[0]["description"], "options": questions_all[0]["options"]}))
             await self.send(json.dumps({ "count" :len(questions_all)}))
             for question in questions_all:
                 await self.send(json.dumps({"description": question["description"], "options": question["options"]}))
-                # await asyncio.sleep(2)  # Delay of 2 seconds for each question
 
+        elif data['action'] == 'user_response':
+            time = data['total_time']
+            response = data['responses']
+            user_Name = data['user_name']
+            set_number = data['set_number']
+            #logic to calculate user score
+            score = 2
+            # from .models import resposnes, quizsets
+            quizset_instance = await database_sync_to_async (quizsets.objects.get)(set_number=set_number)
+            await database_sync_to_async(resposnes.objects.update_or_create)(user_name = user_Name, answer = response, time = time,score = score, set = quizset_instance)
+            await self.send(json.dumps({"score" : score}))
+        
+        elif data['action'] == 'fetch_leaderboard':
+            set_number = data['set_number'] 
+            # Fetch the leaderboard asynchronously
+            leaderboard = await database_sync_to_async(lambda: list(
+                resposnes.objects.filter(set__set_number=set_number)
+                .order_by('-score', 'time')
+                .values('user_name', 'score', 'time')
+            ))()
+
+            leaderboard_data = []
+            for x in leaderboard:
+                leaderboard_data.append({
+                    "name": x['user_name'],
+                    "score": x['score'],
+                    "time": x['time']      
+                })
+
+            # Send the leaderboard data as JSON
+            print(leaderboard_data)
+            await self.send(json.dumps({"leaderboard": leaderboard_data}))
+                    # print(leaderboard_data)
+                    
     async def get_quiz_sets(self):
         try:
             quiz_sets = await database_sync_to_async(self.fetch_quiz_sets)()

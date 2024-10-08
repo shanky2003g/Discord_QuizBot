@@ -25,5 +25,5 @@ class resposnes(models.Model):
     time = models.IntegerField()
     score = models.IntegerField()
     set = models.ForeignKey('quizsets', related_name= 'responses', on_delete=models.CASCADE)
-    def _str_(self):
-            return f"Response of {self.user_name}"
+    def __str__(self):
+            return f"Response of {self.user_name} for {self.set.set_number}"

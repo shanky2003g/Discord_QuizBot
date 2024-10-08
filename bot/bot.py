@@ -4,6 +4,7 @@ import json
 import websockets,asyncio
 from dotenv import load_dotenv
 from discord.ui import Button, View
+import time
 load_dotenv() 
 import os
 token = os.getenv('TOKEN')
@@ -106,6 +107,7 @@ async def fetch_quiz_questions(set_number):
 @client.command()
 async def set(ctx, set_number: str):
     responses = ""
+    start_time = time.time()
     try:
         # Validate that the input is a digit
         if not set_number.isdigit():
@@ -151,18 +153,61 @@ async def set(ctx, set_number: str):
                     responses += button_label
                 await interaction.response.send_message(f'You selected: {button_label}', ephemeral=True)
                 view.stop()  # Stop the view after interaction
+
+
             ##attach callbacks for each button
             for button in buttons:
                 button.callback = button_callback
 
             await ctx.send(question_message, view = view)
-            #wait for the user to press any button
-            await view.wait()
-            await asyncio.sleep(5)
+            # Wait for either the user to press any button or 5 seconds to pass
+            try:
+                await asyncio.wait_for(view.wait(), timeout=5.0)
+            except asyncio.TimeoutError:
+                await ctx.send("Time's up! Moving to the next question.")
+                view.stop()
+        end_time = time.time()
+        total_time = end_time - start_time
+        # print(total_time)
         # print(responses)
-
+       
+        await send_user_response(responses, total_time, str(ctx.author), set_number)
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+    
+async def send_user_response(responses, total_time, user_name, set_number):
+    async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
+        await websocket.send(json.dumps({"action": "user_response", "responses" : responses, "total_time":total_time, "user_name":user_name,
+                                         "set_number" :set_number}))
+        response = await websocket.recv()
+        data = json.loads(response)
+        score = data['score']
+        print(score)
+    
+
+@client.command()
+async def leaderboard(ctx, set_number:str):
+    if not set_number.isdigit():
+            await ctx.send("Please provide a valid set number (e.g., !set 1, !set 2).")
+            return
+
+    set_number = int(set_number)  # Convert to integer
+    quiz_leaderboard = await fetch_leaderboard(set_number)
+    await ctx.send(quiz_leaderboard)
+
+
+async def fetch_leaderboard(set_number):
+    async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
+        await websocket.send(json.dumps({"action": "fetch_leaderboard", "set_number" :set_number}))
+        response = await websocket.recv()
+        data = json.loads(response)
+        leaderboard = "LEADERBOARD:\n"
+        leaderboard += f"{'Name':<10} {'Score':<6} {'Time':<4}\n"  # Header
+        for x in data['leaderboard']:
+            leaderboard += f"{x['name']:<10} {x['score']:<6} {x['time']:<4}\n"
+        print(leaderboard)
+        
+        return leaderboard
 
 
 client.run(token)
