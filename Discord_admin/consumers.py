@@ -33,10 +33,20 @@ class QuizConsumer(AsyncWebsocketConsumer):
             user_Name = data['user_name']
             set_number = data['set_number']
             #logic to calculate user score
-            score = 2
-            # from .models import resposnes, quizsets
             quizset_instance = await database_sync_to_async (quizsets.objects.get)(set_number=set_number)
-            await database_sync_to_async(resposnes.objects.update_or_create)(user_name = user_Name, answer = response, time = time,score = score, set = quizset_instance)
+            score = 0
+            answer_key =quizset_instance.answer_key
+            for i in range(len(answer_key)):
+                if response[i] == answer_key[i]:
+                    score = score + 1
+            await database_sync_to_async(
+            resposnes.objects.update_or_create
+            )(defaults={
+                'answer': response,
+                'time': time,
+                'score': score
+            }, user_name=user_Name, set=quizset_instance)
+
             await self.send(json.dumps({"score" : score}))
         
         elif data['action'] == 'fetch_leaderboard':

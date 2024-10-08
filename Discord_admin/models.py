@@ -4,6 +4,7 @@ from django.db import models
 class quizsets(models.Model):
     set_number = models.IntegerField(primary_key=True, default=0)
     topic = models.CharField(max_length=50)
+    answer_key = models.CharField(max_length=100, null=True)
     question_count = models.IntegerField(default=0)
     def __str__(self):
         return f"{self.topic} (Set {self.set_number})"

@@ -36,7 +36,7 @@ def generate_questions(request, question_count, set_topic, set_number):
 
     # Constructing the prompt for generating questions in JSON format
     prompt_message = f"""
-    Generate {num_questions} questions with 4 options (A, B, C, D) related to the topic {topic}. 
+    Generate {num_questions} questions with 4 options (A, B, C, D) related to the topic {topic}.
     The response should be in JSON format with the following structure and don't put ''' at the top and bottom:
 
     [
@@ -80,13 +80,13 @@ def generate_questions(request, question_count, set_topic, set_number):
             )
              # Prepare a list for bulk creation of questions
             questions_list = []
-    
+            answer_key = ""
             for question_data in questions_data:
                 # Extracting values from question_data
                 question_text = question_data["question"]
                 options = question_data["options"]
                 answer = question_data["answer"]
-
+                answer_key += (question_data["answer"])
                 # Create a new question instance
                 question = questions(
                     quiz_set=quiz_set,
@@ -98,9 +98,17 @@ def generate_questions(request, question_count, set_topic, set_number):
                     D=options["D"],
                 )
                 questions_list.append(question)
-
+            # print(answer_key)
             # Bulk create the questions
             questions.objects.bulk_create(questions_list)
+            quizsets.objects.update_or_create(
+            defaults={
+                'answer_key': answer_key
+            },
+            set_number=set_number,
+            topic=set_topic,
+            question_count=question_count
+            )
         except json.JSONDecodeError as e:
             print(f"Failed to parse JSON: {e}")
     else:

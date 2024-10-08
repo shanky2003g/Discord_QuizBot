@@ -182,7 +182,7 @@ async def send_user_response(responses, total_time, user_name, set_number):
         response = await websocket.recv()
         data = json.loads(response)
         score = data['score']
-        print(score)
+        # print(score)
     
 
 @client.command()

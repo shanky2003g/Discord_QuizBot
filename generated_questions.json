@@ -1,102 +1,22 @@
 [
     {
-        "question": "What is the official language of India?",
-        "options": {
-            "A": "Hindi",
-            "B": "English",
-            "C": "Sanskrit",
-            "D": "Tamil"
-        },
-        "answer": "A"
-    },
-    {
-        "question": "Which of the following is NOT a state in India?",
-        "options": {
-            "A": "Punjab",
-            "B": "Sri Lanka",
-            "C": "Rajasthan",
-            "D": "Karnataka"
-        },
-        "answer": "B"
-    },
-    {
-        "question": "What is the highest peak in India?",
-        "options": {
-            "A": "Mount Everest",
-            "B": "Kangchenjunga",
-            "C": "K2",
-            "D": "Lhotse"
-        },
-        "answer": "B"
-    },
-    {
-        "question": "Which Indian city is known as the 'Pink City'?",
-        "options": {
-            "A": "Mumbai",
-            "B": "Jaipur",
-            "C": "Delhi",
-            "D": "Kolkata"
-        },
-        "answer": "B"
-    },
-    {
         "question": "Who is the current Prime Minister of India?",
         "options": {
             "A": "Narendra Modi",
             "B": "Rahul Gandhi",
             "C": "Sonia Gandhi",
-            "D": "Manmohan Singh"
+            "D": "Amit Shah"
         },
         "answer": "A"
     },
     {
-        "question": "What is the national animal of India?",
+        "question": "What is the capital of Australia?",
         "options": {
-            "A": "Tiger",
-            "B": "Lion",
-            "C": "Elephant",
-            "D": "Peacock"
+            "A": "Sydney",
+            "B": "Melbourne",
+            "C": "Canberra",
+            "D": "Brisbane"
         },
-        "answer": "A"
-    },
-    {
-        "question": "Which Indian festival is celebrated with colorful powder and water?",
-        "options": {
-            "A": "Diwali",
-            "B": "Holi",
-            "C": "Dussehra",
-            "D": "Raksha Bandhan"
-        },
-        "answer": "B"
-    },
-    {
-        "question": "What is the name of the famous Indian monument built by the Mughal emperor Shah Jahan?",
-        "options": {
-            "A": "Taj Mahal",
-            "B": "Red Fort",
-            "C": "Qutub Minar",
-            "D": "Humayun's Tomb"
-        },
-        "answer": "A"
-    },
-    {
-        "question": "Which Indian state is famous for its tea plantations?",
-        "options": {
-            "A": "Kerala",
-            "B": "Assam",
-            "C": "Karnataka",
-            "D": "Tamil Nadu"
-        },
-        "answer": "B"
-    },
-    {
-        "question": "What is the name of the Indian classical dance form known for its intricate footwork and rhythmic patterns?",
-        "options": {
-            "A": "Bharatanatyam",
-            "B": "Kathakali",
-            "C": "Kathak",
-            "D": "Odissi"
-        },
-        "answer": "A"
+        "answer": "C"
     }
 ]
