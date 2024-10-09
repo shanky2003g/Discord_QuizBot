@@ -192,21 +192,27 @@ async def leaderboard(ctx, set_number:str):
             return
 
     set_number = int(set_number)  # Convert to integer
-    quiz_leaderboard = await fetch_leaderboard(set_number)
+    quiz_leaderboard = await fetch_leaderboard(set_number, ctx)
     await ctx.send(quiz_leaderboard)
 
 
-async def fetch_leaderboard(set_number):
+async def fetch_leaderboard(set_number, ctx):
     async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
         await websocket.send(json.dumps({"action": "fetch_leaderboard", "set_number" :set_number}))
         response = await websocket.recv()
         data = json.loads(response)
         leaderboard = "LEADERBOARD:\n"
-        leaderboard += f"{'Name':<10} {'Score':<6} {'Time':<4}\n"  # Header
-        for x in data['leaderboard']:
-            leaderboard += f"{x['name']:<10} {x['score']:<6} {x['time']:<4}\n"
-        print(leaderboard)
-        
+        leaderboard += f"**{'Rank':<5} {'Name':<20} {'Score':<6} {'Time':<4}**\n" 
+        for index, x in enumerate(data['leaderboard']):
+            rank = index + 1 
+            leaderboard += f"{rank:<5} {x['name']:<20} {x['score']:<6} {x['time']:<4}\n"
+            
+            if x['name'] == str(ctx.author): 
+                user_rank = rank 
+
+        # print(str(ctx.author))
+        # print(leaderboard)
+        await ctx.send(f"Your rank is: {user_rank}")
         return leaderboard
 
 
