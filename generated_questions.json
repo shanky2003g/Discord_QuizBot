@@ -1,22 +1,22 @@
 [
     {
-        "question": "What is the full form of NITK?",
+        "question": "Which of the following religions believes in a single, all-powerful god?",
         "options": {
-            "A": "National Institute of Technology, Karnataka",
-            "B": "National Institute of Technology, Kerala",
-            "C": "National Institute of Technology, Kolkata",
-            "D": "National Institute of Technology, Kanpur"
-        },
-        "answer": "A"
-    },
-    {
-        "question": "In which city is NITK located?",
-        "options": {
-            "A": "Bangalore",
-            "B": "Mysore",
-            "C": "Mangalore",
-            "D": "Hubli"
+            "A": "Hinduism",
+            "B": "Buddhism",
+            "C": "Islam",
+            "D": "Shintoism"
         },
         "answer": "C"
+    },
+    {
+        "question": "What is the concept of 'monotheism'?",
+        "options": {
+            "A": "The belief in many gods",
+            "B": "The belief in a single god",
+            "C": "The belief in no god",
+            "D": "The belief in a god who takes human form"
+        },
+        "answer": "B"
     }
 ]

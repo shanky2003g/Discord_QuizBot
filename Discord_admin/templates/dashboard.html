@@ -6,9 +6,6 @@
 
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="style.css">
-
 	<title>AdminHub</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
@@ -808,8 +805,43 @@ body {
 								<td>{{ x.question_count }}</td> <!-- Update with actual count -->
 								<td>
 									<button class="status completed">View</button>
-									<button class="status process">Modify</button>
-									<button class="status pending">Delete</button>
+
+									<button class="status process" data-toggle="modal" data-target="#q" >Modify</button>
+									<div class="modal fade" id="q" tabindex="-1" aria-labelledby="quizSetModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="quizSetModalLabel">Add Quiz Set</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<form id="addSetForm" method="post" action="{% url 'update' x.set_number %}">
+														{% csrf_token %}
+														<!-- Form Fields -->
+														<div class="mb-3">
+															<label for="set_number" class="form-label">Set Number</label>
+															<input type="text" class="form-control" id="set_number" name="set_number" required>
+														</div>
+														<div class="mb-3">
+															<label for="num_questions" class="form-label">Number of Questions</label>
+															<input type="number" class="form-control" id="no_of_questions" name="no_of_questions" required>
+														</div>
+														<div class="mb-3">
+															<label for="topic" class="form-label">Topic</label>
+															<input type="text" class="form-control" id="topic" name="topic" required>
+														</div>
+														<div class="mb-3">
+															<label for="time_per_question" class="form-label">Time per Question (seconds)</label>
+															<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
+														</div>
+														<button type="submit" class="btn btn-primary">Update</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+									<a href="{% url 'delete_set' x.set_number %}" class="status pending" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+								</td>
 								</td>
 							</tr>
 							{% endfor %}
@@ -821,6 +853,16 @@ body {
 			</div>
 		</main>
 		
-	<script src="script.js"></script>
+	<script>
+		const switchMode = document.getElementById('switch-mode');
+
+		switchMode.addEventListener('change', function () {
+			if(this.checked) {
+				document.body.classList.add('dark');
+			} else {
+				document.body.classList.remove('dark');
+			}
+		})
+	</script>
 </body>
 </html>
