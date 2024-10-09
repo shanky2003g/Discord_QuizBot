@@ -36,7 +36,7 @@ class QuizConsumer(AsyncWebsocketConsumer):
             quizset_instance = await database_sync_to_async (quizsets.objects.get)(set_number=set_number)
             score = 0
             answer_key =quizset_instance.answer_key
-            for i in range(len(answer_key)):
+            for i in range(min(len(response), len(answer_key))):
                 if response[i] == answer_key[i]:
                     score = score + 1
             await database_sync_to_async(
@@ -67,7 +67,7 @@ class QuizConsumer(AsyncWebsocketConsumer):
                 })
 
             # Send the leaderboard data as JSON
-            print(leaderboard_data)
+            # print(leaderboard_data)
             await self.send(json.dumps({"leaderboard": leaderboard_data}))
                     # print(leaderboard_data)
                     

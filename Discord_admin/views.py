@@ -4,12 +4,15 @@ import os
 from .forms import QuizSetForm
 from .models import *
 import json
-
 # Configure API key
 genai.configure(api_key=os.environ["API_KEY"])
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    q = quizsets.objects.all()
+    c = q.count()
+    c1 = resposnes.objects.all().count()
+    context = {"q":q, 'c':c, 'c1':c1}
+    return render(request, 'dashboard.html', context)
 
 def add_sets(request):
     if request.method == 'POST':

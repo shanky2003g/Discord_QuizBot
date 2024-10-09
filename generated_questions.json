@@ -1,21 +1,21 @@
 [
     {
-        "question": "Who is the current Prime Minister of India?",
+        "question": "What is the full form of NITK?",
         "options": {
-            "A": "Narendra Modi",
-            "B": "Rahul Gandhi",
-            "C": "Sonia Gandhi",
-            "D": "Amit Shah"
+            "A": "National Institute of Technology, Karnataka",
+            "B": "National Institute of Technology, Kerala",
+            "C": "National Institute of Technology, Kolkata",
+            "D": "National Institute of Technology, Kanpur"
         },
         "answer": "A"
     },
     {
-        "question": "What is the capital of Australia?",
+        "question": "In which city is NITK located?",
         "options": {
-            "A": "Sydney",
-            "B": "Melbourne",
-            "C": "Canberra",
-            "D": "Brisbane"
+            "A": "Bangalore",
+            "B": "Mysore",
+            "C": "Mangalore",
+            "D": "Hubli"
         },
         "answer": "C"
     }

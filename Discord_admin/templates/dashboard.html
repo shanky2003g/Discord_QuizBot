@@ -449,7 +449,7 @@ body {
 }
 #content main .table-data .head h3 {
 	margin-right: auto;
-	font-size: 24px;
+	font-size: 30px;
 	font-weight: 600;
 }
 #content main .table-data .head .bx {
@@ -466,19 +466,26 @@ body {
 }
 #content main .table-data .order table th {
 	padding-bottom: 12px;
-	font-size: 13px;
+	font-size: 21px;
 	text-align: left;
 	border-bottom: 1px solid var(--grey);
 }
 #content main .table-data .order table td {
-	padding: 16px 0;
+	padding: 15px 0;
 }
 #content main .table-data .order table tr td:first-child {
 	display: flex;
 	align-items: center;
 	grid-gap: 12px;
 	padding-left: 6px;
+	padding-top: 12px; 
+    padding-bottom: 12px; 
 }
+
+#content main .table-data .order table td button {
+    margin-right: 4px; /* Space between buttons */
+}
+
 #content main .table-data .order table td img {
 	width: 36px;
 	height: 36px;
@@ -489,11 +496,12 @@ body {
 	background: var(--grey);
 }
 #content main .table-data .order table tr td .status {
-	font-size: 10px;
+	font-size: 15px;
 	padding: 6px 16px;
 	color: var(--light);
 	border-radius: 20px;
 	font-weight: 700;
+	margin: 0 4px;
 }
 #content main .table-data .order table tr td .status.completed {
 	background: var(--blue);
@@ -504,7 +512,6 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
-
 
 #content main .table-data .todo {
 	flex-grow: 1;
@@ -704,104 +711,116 @@ body {
 						<li>
 							<a href="#">Dashboard</a>
 						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
+						<li><i class='bx bx-chevron-right'></i></li>
 						<li>
 							<a class="active" href="#">Home</a>
 						</li>
 					</ul>
 				</div>
 			</div>
-
+		
 			<ul class="box-info">
 				<li>
-					<i class='bx bxs-calendar-check' ></i>
+					<i class='bx bxs-calendar-check'></i>
 					<span class="text">
-						<h3>1020</h3>
+						<h3>{{c}}</h3>
 						<p>Current Question Sets</p>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
+						<h3>{{c1}}</h3>
+						<p>Responses</p>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-dollar-circle' ></i>
+					<i class='bx bxs-dollar-circle'></i>
 					<span class="text">
 						<h3>$2543</h3>
 						<p>Total Sales</p>
 					</span>
 				</li>
 			</ul>
+		
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
 						<h3>Quiz Sets</h3>
 						<!-- Button to trigger modal -->
-<button class="btn" data-toggle="modal" data-target="#quizSetModal">
-    <i class='bx bx-plus'></i>
-</button>
-
-<!-- Modal Structure -->
-<div class="modal fade" id="quizSetModal" tabindex="-1" aria-labelledby="quizSetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="quizSetModalLabel">Add Quiz Set</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-				<form id="addSetForm" method="post" action="{% url 'add_sets' %}">
-					{% csrf_token %}
-					<!-- Form Fields -->
-					<div class="mb-3">
-						<label for="set_number" class="form-label">Set Number</label>
-						<input type="text" class="form-control" id="set_number" name="set_number" required>
+						<button class="btn" data-toggle="modal" data-target="#quizSetModal">
+							<i class='bx bx-plus'></i>
+						</button>
+		
+						<!-- Modal Structure -->
+						<div class="modal fade" id="quizSetModal" tabindex="-1" aria-labelledby="quizSetModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="quizSetModalLabel">Add Quiz Set</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<form id="addSetForm" method="post" action="{% url 'add_sets' %}">
+											{% csrf_token %}
+											<!-- Form Fields -->
+											<div class="mb-3">
+												<label for="set_number" class="form-label">Set Number</label>
+												<input type="text" class="form-control" id="set_number" name="set_number" required>
+											</div>
+											<div class="mb-3">
+												<label for="num_questions" class="form-label">Number of Questions</label>
+												<input type="number" class="form-control" id="no_of_questions" name="no_of_questions" required>
+											</div>
+											<div class="mb-3">
+												<label for="topic" class="form-label">Topic</label>
+												<input type="text" class="form-control" id="topic" name="topic" required>
+											</div>
+											<div class="mb-3">
+												<label for="time_per_question" class="form-label">Time per Question (seconds)</label>
+												<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
+											</div>
+											<button type="submit" class="btn btn-primary">Add Set</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="mb-3">
-						<label for="num_questions" class="form-label">Number of Questions</label>
-						<input type="number" class="form-control" id="no_of_questions" name="no_of_questions" required>
-					</div>
-					<div class="mb-3">
-						<label for="topic" class="form-label">Topic</label>
-						<input type="text" class="form-control" id="topic" name="topic" required>
-					</div>
-					<div class="mb-3">
-						<label for="time_per_question" class="form-label">Time per Question (seconds)</label>
-						<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
-					</div>
-					<button type="submit" class="btn btn-primary">Add Set</button>
-				</form>
-			</div>
-			
-        </div>
-    </div>
-</div>
-
-					</div>
-				</div>				
+		
 					<table>
 						<thead>
 							<tr>
-								<th>User</th>
-								<th>Date Order</th>
-								<th>Status</th>
+								<th>Set</th>
+								<th>Topic</th>
+								<th>Questions Count</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
+							{% for x in q %}
 							<tr>
 								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
+									<img src="img/people.png" alt="User Image">
+									<p>{{ x.set_number }}</p>
 								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
+								<td>{{ x.topic }}</td> <!-- Updated for clarity -->
+								<td>{{ x.question_count }}</td> <!-- Update with actual count -->
+								<td>
+									<button class="status completed">View</button>
+									<button class="status process">Modify</button>
+									<button class="status pending">Delete</button>
+								</td>
 							</tr>
+							{% endfor %}
 						</tbody>
+						
+						
 					</table>
 				</div>
+			</div>
+		</main>
+		
 	<script src="script.js"></script>
 </body>
 </html>
