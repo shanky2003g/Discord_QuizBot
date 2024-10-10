@@ -13,7 +13,7 @@ def dashboard(request):
     c = q.count()
     c1 = resposnes.objects.all().count()
     chart_context = chart_view()
-    context = {"q":q, 'c':c, 'c1':c1}
+    context = {"q":q, 'c':c, 'c1':c1, }
     context.update(chart_context)
     return render(request, 'dashboard.html', context)
 def chart_view():
@@ -35,6 +35,10 @@ def chart_view():
         'data': data,
     }
     return context
+def view_questions(request, pk):
+    ques = questions.objects.filter(quiz_set__set_number = pk)
+    context = {'ques': ques}
+    return render(request, 'view.html', context)
 
 def add_sets(request):
     if request.method == 'POST':
@@ -244,3 +248,4 @@ def update_questions(request, question_count, set_topic, set_number):
             print(f"Failed to parse JSON: {e}")
     else:
         print("Received an empty or invalid response from the model.")
+

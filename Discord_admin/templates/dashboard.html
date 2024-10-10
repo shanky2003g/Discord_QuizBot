@@ -77,9 +77,12 @@ body {
   box-sizing: border-box;
 }
 .lds-dual-ring {
-  display: none;
-  width: 80px;
-  height: 80px;
+	width: 80px; /* Example size */
+    height: 80px; /* Example size */
+    border: 8px solid #f3f3f3; /* Light gray */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%; /* Circle */
+    animation: spin 2s linear infinite;
 }
 .lds-dual-ring:after {
   content: " ";
@@ -100,7 +103,23 @@ body {
     transform: rotate(360deg);
   }
 }
-
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loader-container {
+	display: none
+    position: fixed; /* Fixed position to cover the entire screen */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(255, 255, 255, 0.7); /* Light transparent background */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Make sure it's on top */
+}
 
 
 
@@ -811,7 +830,7 @@ body {
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form onsubmit="handleSubmit()" id="addSetForm" method="post" action="{% url 'add_sets' %}">
+										<form onsubmit="handleSubmit('loaderCreate')" id="addSetForm" method="post" action="{% url 'add_sets' %}">
 											{% csrf_token %}
 											<!-- Form Fields -->
 											<div class="mb-3">
@@ -831,8 +850,7 @@ body {
 												<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
 											</div>
 											<button type="submit" class="btn btn-primary">Add Set</button>
-
-											<div class="lds-dual-ring"></div>
+											<div class="lds-dual-ring" id="loaderCreate"></div>
 										</form>
 									</div>
 								</div>
@@ -860,7 +878,7 @@ body {
 								<td>{{ x.topic }}</td> <!-- Updated for clarity -->
 								<td>{{ x.question_count }}</td> <!-- Update with actual count -->
 								<td>
-									<button class="status completed">View</button>
+									<a href="{% url 'view' x.set_number %}" class="status completed">View</a>
 
 									<button class="status process" data-toggle="modal" data-target="#q" >Modify</button>
 									<div class="modal fade" id="q" tabindex="-1" aria-labelledby="quizSetModalLabel" aria-hidden="true">
@@ -871,7 +889,7 @@ body {
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form onsubmit="handleSubmit()" id="addSetForm" method="post" action="{% url 'update' x.set_number %}">
+													<form onsubmit="handleSubmit('loaderUpdate')" id="updateSetForm" method="post" action="{% url 'update' x.set_number %}">
 														{% csrf_token %}
 														<!-- Form Fields -->
 														<div class="mb-3">
@@ -891,6 +909,11 @@ body {
 															<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
 														</div>
 														<button type="submit" class="btn btn-primary">Update</button>
+
+														<div class="loader-container">
+															<div class="lds-dual-ring" id="loaderUpdate"></div>
+														</div>
+														
 													</form>
 												</div>
 											</div>
@@ -961,8 +984,8 @@ body {
 	</script>
 
 	  <script>
-		function handleSubmit () {
-			let loader = document.querySelector(".lds-dual-ring")
+		function handleSubmit (loaderId) {
+			const loader = document.getElementById(loaderId);
 			loader.style.display = "inline-block"
 		}
 	  </script>

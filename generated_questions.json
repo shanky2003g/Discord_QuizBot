@@ -1,52 +1,32 @@
 [
     {
-        "question": "What is the traditional Hindu festival of lights called?",
+        "question": "What is the primary function of a watch?",
         "options": {
-            "A": "Diwali",
-            "B": "Holi",
-            "C": "Eid al-Fitr",
-            "D": "Christmas"
+            "A": "To measure time",
+            "B": "To tell the date",
+            "C": "To track your location",
+            "D": "To make phone calls"
         },
         "answer": "A"
     },
     {
-        "question": "Which of these is NOT a common practice during Diwali?",
+        "question": "Which type of watch uses a quartz crystal to regulate timekeeping?",
         "options": {
-            "A": "Lighting diyas (oil lamps)",
-            "B": "Sharing sweets and gifts",
-            "C": "Praying to the goddess Lakshmi",
-            "D": "Celebrating the end of the monsoon season"
-        },
-        "answer": "D"
-    },
-    {
-        "question": "What does the word 'Diwali' literally mean in Hindi?",
-        "options": {
-            "A": "Festival of lights",
-            "B": "Row of lights",
-            "C": "Celebration of victory",
-            "D": "New year's eve"
+            "A": "Mechanical watch",
+            "B": "Quartz watch",
+            "C": "Atomic watch",
+            "D": "Solar watch"
         },
         "answer": "B"
     },
     {
-        "question": "Which of these mythological figures is often associated with Diwali?",
+        "question": "What is the name for the small hand on a watch?",
         "options": {
-            "A": "Rama",
-            "B": "Krishna",
-            "C": "Shiva",
-            "D": "Indra"
+            "A": "Hour hand",
+            "B": "Minute hand",
+            "C": "Second hand",
+            "D": "Stopwatch hand"
         },
         "answer": "A"
-    },
-    {
-        "question": "In which month of the Hindu calendar does Diwali typically fall?",
-        "options": {
-            "A": "Ashadha",
-            "B": "Kartik",
-            "C": "Chaitra",
-            "D": "Magha"
-        },
-        "answer": "B"
     }
 ]

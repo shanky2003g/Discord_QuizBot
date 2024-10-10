@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous"
+    />
+    <title>Memory Cards</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap");
+
+:root {
+  --primary-color: #8e44ad;
+  --background-color: #b8c6db;
+  --secondary-background-color: #f5f7fa;
+  --light-color: #fff;
+  --border-color: #aaa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  background-image: linear-gradient(315deg, var(--background-color) 0%, var(--secondary-background-color) 100%);
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+h1 button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-small {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-ghost {
+  border: 0;
+  background-color: transparent;
+}
+
+.btn-margin {
+  margin-top: 1.25rem;
+  width: 28.125rem;
+  max-width: 90%;
+}
+
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.btn:focus, .navigation .nav-button:focus {
+  outline: none;
+}
+
+.clear {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.cards {
+  perspective: 1000px;
+  position: relative;
+  width: 31.25rem;
+  max-width: 90%;
+  height: 24rem; /* Increased height for better layout */
+}
+
+.card {
+  background-color: var(--light-color);
+  border-radius: 0.625rem;
+  position: absolute;
+  font-size: 1rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(50%) rotateY(-10deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  display: flex; /* Flexbox for card content */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center vertically */
+  padding: 1rem; /* Padding for better spacing */
+}
+
+.card.active {
+  cursor: pointer;
+  opacity: 1;
+  z-index: 10;
+  transform: translateX(0) rotateY(0deg);
+}
+
+.card.left {
+  transform: translateX(-50%) rotateY(10deg);
+}
+
+.inner-card {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0.625rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+  padding: 1.5rem
+}
+
+.card.show-answer .inner-card {
+  transform: rotateX(180deg);
+}
+
+.inner-card-front, .inner-card-back {
+  backface-visibility: hidden;
+  background-color: var(--light-color);
+  border-radius: 0.625rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.inner-card-front {
+  transform: rotateX(0deg);
+  z-index: 2;
+  display: flex; /* Use flex to center content */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center vertically */
+  padding: 1rem; /* Padding for spacing */
+}
+
+.inner-card-back {
+  transform: rotateX(180deg);
+  display: flex; /* Use flex to center content */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center vertically */
+  padding: 1rem; /* Padding for spacing */
+}
+
+.inner-card-front::after, .inner-card-back::after {
+  content: '\f021  Flip';
+  font-family: 'Font Awesome 5 Free', 'Poppins', sans-serif;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--background-color);
+}
+
+.navigation {
+  display: flex;
+  margin: 1.25rem 0;
+}
+
+.navigation .nav-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.navigation .nav-button:hover {
+  transform: scale(1.2);
+}
+
+.navigation p {
+  margin: 0 1.5rem;
+}
+
+.add-container {
+  background-color: var(--secondary-background-color);
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.add-container.show {
+  opacity: 1;
+  z-index: 2;
+}
+
+.add-container h3 {
+  margin: 0.625rem 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group label {
+  display: block;
+  margin: 1.25rem 0 0.625rem;
+}
+
+.form-group textarea {
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  padding: 0.75rem;
+  width: 31.25rem;
+  max-width: 90%;
+}
+.options {
+    display: flex;
+    flex-direction: column; /* Stack options vertically */
+    margin-top: 0.5rem; /* Space between question and options */
+}
+
+.options p {
+    margin: 0.25rem 0; /* Space between each option */
+}
+
+</style>
+<body>
+    <h1>QUESTIONS</h1>
+    <div id="cards-container" class="cards"></div>
+    <div class="navigation">
+        <button id="prev" class="nav-button">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <p id="current"></p>
+        <button id="next" class="nav-button">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+    <script>
+        const cardsData = [
+            {% for question in ques %}
+            {
+                question: "{{ question.description }}",
+                answer: "{{ question.answer }}",
+                options: {
+                    A: "{{ question.A }}",
+                    B: "{{ question.B }}",
+                    C: "{{ question.C }}",
+                    D: "{{ question.D }}"
+                }
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+    </script>
+    <script>
+        const cardsContainer = document.getElementById("cards-container");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        const currentElement = document.getElementById("current");
+
+        let currentActiveCard = 0;
+        const cardsElement = [];
+
+        function createCards() {
+            cardsData.forEach((data, index) => createCard(data, index));
+        }
+
+        function createCard(data, index) {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            if (index === 0) card.classList.add("active");
+
+            card.innerHTML = `
+            <div class="inner-card">
+                <div class="inner-card-front">
+                    <p><strong>${data.question}</strong></p>
+                    <div class="options">
+                        <p><strong>A:</strong> ${data.options.A}</p>
+                        <p><strong>B:</strong> ${data.options.B}</p>
+                        <p><strong>C:</strong> ${data.options.C}</p>
+                        <p><strong>D:</strong> ${data.options.D}</p>
+                    </div>
+                </div>
+                <div class="inner-card-back">
+                    <p><strong>Answer:</strong> ${data.answer}</p>
+                </div>
+            </div>
+        `;
+
+            card.addEventListener("click", () => card.classList.toggle("show-answer"));
+            cardsElement.push(card);
+            cardsContainer.appendChild(card);
+            updateCurrentText();
+        }
+
+        function updateCurrentText() {
+            currentElement.innerText = `${currentActiveCard + 1}/${cardsElement.length}`;
+        }
+
+        // Event Listeners for navigation buttons
+        nextButton.addEventListener("click", () => {
+            cardsElement[currentActiveCard].className = "card left";
+            currentActiveCard++;
+            if (currentActiveCard > cardsElement.length - 1) {
+                currentActiveCard = 0;
+            }
+            cardsElement[currentActiveCard].className = "card active";
+            updateCurrentText();
+        });
+
+        prevButton.addEventListener("click", () => {
+            cardsElement[currentActiveCard].className = "card right";
+            currentActiveCard--;
+            if (currentActiveCard < 0) {
+                currentActiveCard = cardsElement.length - 1;
+            }
+            cardsElement[currentActiveCard].className = "card active";
+            updateCurrentText();
+        });
+
+        // Initialization
+        createCards();
+    </script>
+</body>
+</html>
