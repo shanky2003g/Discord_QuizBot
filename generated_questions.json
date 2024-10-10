@@ -1,21 +1,51 @@
 [
     {
-        "question": "Which of the following religions believes in a single, all-powerful god?",
+        "question": "What is the traditional Hindu festival of lights called?",
         "options": {
-            "A": "Hinduism",
-            "B": "Buddhism",
-            "C": "Islam",
-            "D": "Shintoism"
+            "A": "Diwali",
+            "B": "Holi",
+            "C": "Eid al-Fitr",
+            "D": "Christmas"
         },
-        "answer": "C"
+        "answer": "A"
     },
     {
-        "question": "What is the concept of 'monotheism'?",
+        "question": "Which of these is NOT a common practice during Diwali?",
         "options": {
-            "A": "The belief in many gods",
-            "B": "The belief in a single god",
-            "C": "The belief in no god",
-            "D": "The belief in a god who takes human form"
+            "A": "Lighting diyas (oil lamps)",
+            "B": "Sharing sweets and gifts",
+            "C": "Praying to the goddess Lakshmi",
+            "D": "Celebrating the end of the monsoon season"
+        },
+        "answer": "D"
+    },
+    {
+        "question": "What does the word 'Diwali' literally mean in Hindi?",
+        "options": {
+            "A": "Festival of lights",
+            "B": "Row of lights",
+            "C": "Celebration of victory",
+            "D": "New year's eve"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which of these mythological figures is often associated with Diwali?",
+        "options": {
+            "A": "Rama",
+            "B": "Krishna",
+            "C": "Shiva",
+            "D": "Indra"
+        },
+        "answer": "A"
+    },
+    {
+        "question": "In which month of the Hindu calendar does Diwali typically fall?",
+        "options": {
+            "A": "Ashadha",
+            "B": "Kartik",
+            "C": "Chaitra",
+            "D": "Magha"
         },
         "answer": "B"
     }

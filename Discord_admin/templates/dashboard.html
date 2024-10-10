@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	  
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	  
+	  
 </head>
 </head>
 <style>
@@ -62,6 +68,39 @@ body {
 	background: var(--grey);
 	overflow-x: hidden;
 }
+
+
+
+
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: none;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 
@@ -614,9 +653,23 @@ body {
 		min-width: 420px;
 	}
 }
+.chart-container {
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Stack items vertically if needed */
+    justify-content: center; /* Center the chart vertically */
+    align-items: center; /* Center the chart horizontally */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 20px; /* Padding around the chart */
+    margin: 24px; /* Margin around the container */
+    {% comment %} width: calc(100% - 48px); /* Full width minus margins */
+    height: calc(100vh - 48px); /* Full height minus margins */ {% endcomment %}
+    box-sizing: border-box; /* Include padding and border in total dimensions */
+    overflow: hidden; /* Hide overflow if needed */
+}
 </style>
 <body>
-
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -758,7 +811,7 @@ body {
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form id="addSetForm" method="post" action="{% url 'add_sets' %}">
+										<form onsubmit="handleSubmit()" id="addSetForm" method="post" action="{% url 'add_sets' %}">
 											{% csrf_token %}
 											<!-- Form Fields -->
 											<div class="mb-3">
@@ -778,6 +831,8 @@ body {
 												<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
 											</div>
 											<button type="submit" class="btn btn-primary">Add Set</button>
+
+											<div class="lds-dual-ring"></div>
 										</form>
 									</div>
 								</div>
@@ -798,7 +853,8 @@ body {
 							{% for x in q %}
 							<tr>
 								<td>
-									<img src="img/people.png" alt="User Image">
+									
+									<img src="{% static '/images/1.png' %}" alt="">
 									<p>{{ x.set_number }}</p>
 								</td>
 								<td>{{ x.topic }}</td> <!-- Updated for clarity -->
@@ -815,7 +871,7 @@ body {
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form id="addSetForm" method="post" action="{% url 'update' x.set_number %}">
+													<form onsubmit="handleSubmit()" id="addSetForm" method="post" action="{% url 'update' x.set_number %}">
 														{% csrf_token %}
 														<!-- Form Fields -->
 														<div class="mb-3">
@@ -851,6 +907,10 @@ body {
 					</table>
 				</div>
 			</div>
+			<div class="chart-container">
+				<canvas id="myChart" width="100" height="700"></canvas>
+			</div>
+			
 		</main>
 		
 	<script>
@@ -864,5 +924,48 @@ body {
 			}
 		})
 	</script>
+
+	<script>
+		const ctx = document.getElementById('myChart');
+		
+		const data = {
+			labels: {{ labels|safe }}, 
+			datasets: [
+				{
+					label: 'Number of Responses',
+					data: {{ data|safe }},
+					backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],  // Optional: colors for each segment
+				},
+			]
+		};
+
+		const config = {
+			type: 'doughnut',
+			data: data,
+			options: {
+			  responsive: true,
+			  maintainAspectRatio: false,
+			  plugins: {
+				legend: {
+				  position: 'top',
+				},
+				title: {
+				  display: true,
+				  text: 'RESPONSES STATS'
+				},
+			  },
+			},
+		  };
+		  
+		new Chart(ctx, config);
+	</script>
+
+	  <script>
+		function handleSubmit () {
+			let loader = document.querySelector(".lds-dual-ring")
+			loader.style.display = "inline-block"
+		}
+	  </script>
+	  
 </body>
 </html>

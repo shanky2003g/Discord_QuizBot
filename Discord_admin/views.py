@@ -4,6 +4,7 @@ import os
 from .forms import QuizSetForm
 from .models import *
 import json
+from django.db.models import Count
 # Configure API key
 genai.configure(api_key=os.environ["API_KEY"])
 
@@ -11,8 +12,29 @@ def dashboard(request):
     q = quizsets.objects.all()
     c = q.count()
     c1 = resposnes.objects.all().count()
+    chart_context = chart_view()
     context = {"q":q, 'c':c, 'c1':c1}
+    context.update(chart_context)
     return render(request, 'dashboard.html', context)
+def chart_view():
+    response_counts = (
+        quizsets.objects.annotate(response_count=Count('responses'))
+        .values('set_number', 'topic', 'response_count')
+    )
+
+    # Prepare the data for Chart.js
+    labels = []
+    data = []
+    
+    for item in response_counts:
+        labels.append(f"Set {item['set_number']} - {item['topic']}")
+        data.append(item['response_count'])
+
+    context = {
+        'labels': labels,
+        'data': data,
+    }
+    return context
 
 def add_sets(request):
     if request.method == 'POST':
