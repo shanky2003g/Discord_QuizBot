@@ -1,52 +1,52 @@
 [
     {
-        "question": "What is the correct syntax to print 'Hello World!' in Python?",
+        "question": "What is the correct syntax for declaring a pointer to an integer in C++?",
         "options": {
-            "A": "print('Hello World!')",
-            "B": "console.log('Hello World!')",
-            "C": "System.out.println('Hello World!')",
-            "D": "echo 'Hello World!'"
+            "A": "int *ptr;",
+            "B": "*int ptr;",
+            "C": "int ptr*;",
+            "D": "ptr *int;"
         },
         "answer": "A"
     },
     {
-        "question": "Which data type is used to represent a sequence of characters in Python?",
+        "question": "Which of the following is NOT a valid C++ data type?",
         "options": {
-            "A": "Integer",
-            "B": "Float",
-            "C": "String",
-            "D": "Boolean"
+            "A": "float",
+            "B": "string",
+            "C": "integer",
+            "D": "boolean"
         },
         "answer": "C"
     },
     {
-        "question": "What is the purpose of the 'len()' function in Python?",
+        "question": "What does the 'const' keyword do in C++?",
         "options": {
-            "A": "To convert a value to a string",
-            "B": "To determine the length of a sequence",
-            "C": "To create a new list",
-            "D": "To add two numbers together"
+            "A": "Declares a variable that can be modified.",
+            "B": "Declares a function that can modify global variables.",
+            "C": "Declares a variable that cannot be modified after initialization.",
+            "D": "Declares a function that cannot be called from other files."
+        },
+        "answer": "C"
+    },
+    {
+        "question": "Which operator is used to access members of a class in C++?",
+        "options": {
+            "A": "->",
+            "B": ".",
+            "C": "::",
+            "D": "@"
         },
         "answer": "B"
     },
     {
-        "question": "Which keyword is used to define a function in Python?",
+        "question": "What is the purpose of the 'new' operator in C++?",
         "options": {
-            "A": "function",
-            "B": "def",
-            "C": "method",
-            "D": "procedure"
+            "A": "To declare a new variable.",
+            "B": "To allocate memory dynamically from the heap.",
+            "C": "To call a constructor.",
+            "D": "To delete an object from memory."
         },
         "answer": "B"
-    },
-    {
-        "question": "What is the output of the following Python code:\n```python\nprint(2 + 3 * 4)\n```",
-        "options": {
-            "A": "14",
-            "B": "20",
-            "C": "10",
-            "D": "5"
-        },
-        "answer": "A"
     }
 ]

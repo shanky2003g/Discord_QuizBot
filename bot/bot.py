@@ -27,7 +27,7 @@ async def on_ready():
 @client.command()
 async def hello(ctx):
     await ctx.send("Hello")
-    print("SUCCESS1")
+    #print("SUCCESS1")
 
 @client.event
 async def on_member_join(member):
@@ -40,8 +40,20 @@ async def on_member_join(member):
         print("Channel not found!")
 
     # Send a DM to the new member
+    welcome_message = f"""
+    Welcome to the server, {member.name}! Enjoy your Quiz!
+
+    Here are some commands you can use:
+    - **!hello**: Say hello to the bot!
+    - **!goodbye**: Say goodbye!
+    - **!sets**: Show the current available quiz sets.
+    - **!set "set_number"**: Choose the set you want to attend. For example: `!set 1`
+    - **!leaderboard "set_number"**: Check the leaderboard for a specific set. For example: `!leaderboard 1`
+    - Each question carry 1 mark.
+    """
     try:
-        await member.send("Welcome to the server! Enjoy your Quiz!")
+        
+        await member.send(welcome_message)
         print(f"Sent DM to {member.name}.")
     except discord.Forbidden:
         print(f"Could not send DM to {member.name}. They might have DMs disabled.")
@@ -62,7 +74,7 @@ async def on_member_remove(member):
 @client.command()
 async def goodbye(ctx):
     await ctx.send("Demo message2")
-    print("SUCCESS2")
+    print("BYE")
 
 #Fetching available quiz sets
 async def fetch_quiz_sets():
@@ -168,10 +180,12 @@ async def set(ctx, set_number: str):
                 view.stop()
         end_time = time.time()
         total_time = end_time - start_time
-        # print(total_time)
-        # print(responses)
-       
+        await ctx.send("Quiz Ends! Processing  your rank and leaderboard.......")
+        # await leaderboard(ctx, str(set_number)
         await send_user_response(responses, total_time, str(ctx.author), set_number)
+        await asyncio.sleep(2)
+        await leaderboard(ctx, str(set_number))
+
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
     
