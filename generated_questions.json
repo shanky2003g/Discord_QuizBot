@@ -1,31 +1,51 @@
 [
     {
-        "question": "What is the primary function of a watch?",
+        "question": "What is the correct syntax to print 'Hello World!' in Python?",
         "options": {
-            "A": "To measure time",
-            "B": "To tell the date",
-            "C": "To track your location",
-            "D": "To make phone calls"
+            "A": "print('Hello World!')",
+            "B": "console.log('Hello World!')",
+            "C": "System.out.println('Hello World!')",
+            "D": "echo 'Hello World!'"
         },
         "answer": "A"
     },
     {
-        "question": "Which type of watch uses a quartz crystal to regulate timekeeping?",
+        "question": "Which data type is used to represent a sequence of characters in Python?",
         "options": {
-            "A": "Mechanical watch",
-            "B": "Quartz watch",
-            "C": "Atomic watch",
-            "D": "Solar watch"
+            "A": "Integer",
+            "B": "Float",
+            "C": "String",
+            "D": "Boolean"
+        },
+        "answer": "C"
+    },
+    {
+        "question": "What is the purpose of the 'len()' function in Python?",
+        "options": {
+            "A": "To convert a value to a string",
+            "B": "To determine the length of a sequence",
+            "C": "To create a new list",
+            "D": "To add two numbers together"
         },
         "answer": "B"
     },
     {
-        "question": "What is the name for the small hand on a watch?",
+        "question": "Which keyword is used to define a function in Python?",
         "options": {
-            "A": "Hour hand",
-            "B": "Minute hand",
-            "C": "Second hand",
-            "D": "Stopwatch hand"
+            "A": "function",
+            "B": "def",
+            "C": "method",
+            "D": "procedure"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "What is the output of the following Python code:\n```python\nprint(2 + 3 * 4)\n```",
+        "options": {
+            "A": "14",
+            "B": "20",
+            "C": "10",
+            "D": "5"
         },
         "answer": "A"
     }

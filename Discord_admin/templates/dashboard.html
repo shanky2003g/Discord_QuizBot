@@ -70,19 +70,14 @@ body {
 }
 
 
-
-
 .lds-dual-ring,
 .lds-dual-ring:after {
   box-sizing: border-box;
 }
 .lds-dual-ring {
-	width: 80px; /* Example size */
-    height: 80px; /* Example size */
-    border: 8px solid #f3f3f3; /* Light gray */
-    border-top: 8px solid #3498db; /* Blue */
-    border-radius: 50%; /* Circle */
-    animation: spin 2s linear infinite;
+  display: none;
+  width: 80px;
+  height: 80px;
 }
 .lds-dual-ring:after {
   content: " ";
@@ -103,25 +98,6 @@ body {
     transform: rotate(360deg);
   }
 }
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.loader-container {
-	display: none
-    position: fixed; /* Fixed position to cover the entire screen */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(255, 255, 255, 0.7); /* Light transparent background */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    z-index: 1000; /* Make sure it's on top */
-}
-
-
 
 
 
@@ -909,11 +885,7 @@ body {
 															<input type="number" class="form-control" id="time_per_question" name="per_question_duration" required>
 														</div>
 														<button type="submit" class="btn btn-primary">Update</button>
-
-														<div class="loader-container">
 															<div class="lds-dual-ring" id="loaderUpdate"></div>
-														</div>
-														
 													</form>
 												</div>
 											</div>
