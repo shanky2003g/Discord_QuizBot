@@ -175,7 +175,7 @@ async def set(ctx, set_number: str):
             await ctx.send(question_message, view = view)
             # Wait for either the user to press any button or 5 seconds to pass
             try:
-                await asyncio.wait_for(view.wait(), timeout=100.0)
+                await asyncio.wait_for(view.wait(), timeout=5.0)
             except asyncio.TimeoutError:
                 await ctx.send("Time's up! Moving to the next question.")
                 view.stop()
@@ -213,20 +213,23 @@ async def leaderboard(ctx, set_number:str):
 
 async def fetch_leaderboard(set_number, ctx):
     async with websockets.connect('ws://localhost:8000/ws/quiz/') as websocket:
-        await websocket.send(json.dumps({"action": "fetch_leaderboard", "set_number" :set_number}))
+        await websocket.send(json.dumps({"action": "fetch_leaderboard", "set_number": set_number}))
         response = await websocket.recv()
         data = json.loads(response)
+        
+        # Prepare the leaderboard string
         leaderboard = "LEADERBOARD:\n"
-        leaderboard += f"**{'Rank':<5} {'Name':<20} {'Score':<6} {'Time':<4}**\n" 
-        for index, x in enumerate(data['leaderboard']):
-            rank = index + 1 
+        leaderboard += f"**{'Rank':<5} {'Name':<20} {'Score':<6} {'Time':<4}**\n"
+        
+        # Limit to the top 10 players
+        for index, x in enumerate(data['leaderboard'][:10]):  # Limit to top 10
+            rank = index + 1
             leaderboard += f"{rank:<5} {x['name']:<20} {x['score']:<6} {x['time']:<4}\n"
             
+            # If the user is in the leaderboard, store their rank
             if x['name'] == str(ctx.author): 
-                user_rank = rank 
-
-        # print(str(ctx.author))
-        # print(leaderboard)
+                user_rank = rank
+        
         await ctx.send(f"Your rank is: {user_rank}")
         return leaderboard
 

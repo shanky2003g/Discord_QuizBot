@@ -1,4 +1,4 @@
-# Project Name
+# Quizzy
 
 ## Table of Contents
 
@@ -23,6 +23,16 @@ The **Discord Quiz Bot** enables users to participate in quizzes directly within
   - **Points**: Users earn points based on the number of correct answers.
   - **Time**: If multiple users have the same number of correct answers, their ranking is decided by the time taken to answer the questions (faster users rank higher).
   - The leaderboard shows the top 10 players, as well as each user's rank, even if they are not in the top 10.
+
+## Commands
+
+Here are some commands you can use:
+
+- **!hello**: Say hello to the bot!
+- **!goodbye**: Say goodbye!
+- **!sets**: Show the current available quiz sets.
+- **!set "set_number"**: Choose the set you want to attend. For example: `!set 1`
+- **!leaderboard "set_number"**: Check the leaderboard for a specific set. For example: `!leaderboard 1`
 
 ### Quiz Management Application
 
@@ -210,3 +220,27 @@ Once the image is built, you can run the Docker container using the following co
 docker run -d -p 8000:8000 --name project-container project-name
 ```
 This will start the Django development server inside the container and expose it on port 8000 of your local machine.
+
+
+## Relevant Screenshots:
+### 1. Admin Panel: Admin can view, update, delete the exiting sets.
+![alt text](images/image.png)
+
+- **View**:
+![alt text](images/image-1.png)
+
+- **Delete**:
+![alt text](images/image-2.png)
+
+- **Modify and Add**:
+![alt text](images/image-3.png)
+
+- **Response statistics**:
+![alt text](images/image-4.png)
+
+### 2. Bot:
+![alt text](images/image-5.png)
+
+![alt text](images/image-6.png)
+
+![alt text](images/image-7.png)
