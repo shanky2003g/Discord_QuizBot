@@ -5,7 +5,8 @@ import websockets,asyncio
 from dotenv import load_dotenv
 from discord.ui import Button, View
 import time
-load_dotenv() 
+from settings import BASE_DIR
+load_dotenv(BASE_DIR/".env") 
 import os
 token = os.getenv('TOKEN')
 c_id = os.getenv('ID')
