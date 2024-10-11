@@ -1,0 +1,29 @@
+# Django framework
+Django>=4.0,<5.0
+
+# Django Channels for WebSocket support
+channels>=4.0
+
+# Daphne server for handling ASGI
+daphne>=4.0,<5.0
+
+# Environment variables management
+python-decouple>=3.5,<4.0
+
+# Discord.py for the Discord bot
+discord.py>=2.0,<3.0
+
+# WebSocket client library
+websockets>=10.0,<11.0
+
+# Google Generative AI
+google-generativeai
+
+# Additional libraries for handling tasks, requests, etc.
+requests>=2.25,<3.0
+django-cors-headers>=3.10,<4.0 
+
+# For background tasks (optional)
+django-background-tasks>=1.1,<2.0
+
+python-dotenv

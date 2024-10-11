@@ -67,7 +67,7 @@ async def on_member_remove(member):
     channel = client.get_channel(channel_id)  # Retrieve the channel object using the ID
 
     if channel is not None:
-        await channel.send(f"{member.mention} Goodbye")  # Send the message
+        await channel.send(f"{member.mention} left the channel")  # Send the message
     else:
         print("Channel not found!")
 

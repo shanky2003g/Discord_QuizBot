@@ -12,8 +12,9 @@ def dashboard(request):
     q = quizsets.objects.all()
     c = q.count()
     c1 = resposnes.objects.all().count()
+    c2 = questions.objects.all().count()
     chart_context = chart_view()
-    context = {"q":q, 'c':c, 'c1':c1, }
+    context = {"q":q, 'c':c, 'c1':c1,'c2':c2 }
     context.update(chart_context)
     return render(request, 'dashboard.html', context)
 def chart_view():
