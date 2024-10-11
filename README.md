@@ -92,3 +92,121 @@ This project was built using the following technologies and tools:
 - **[ASGI](https://asgi.readthedocs.io/en/latest/)** - The asynchronous server gateway interface used to support WebSockets and asynchronous processing in Django.
 - **[Daphne](https://www.django-channels.com/)** - The ASGI server used to handle HTTP and WebSocket requests, enabling real-time communication for the quiz system.
 
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure that your system meets the following prerequisites:
+
+- **[Django](https://www.djangoproject.com/)** (>=4.0, <5.0) - A high-level Python web framework.
+- **[Django Channels](https://channels.readthedocs.io/en/stable/)** (>=4.0) - For adding WebSocket support to Django.
+- **[Daphne](https://www.django-channels.com/)** (>=4.0, <5.0) - ASGI server used to handle HTTP and WebSocket requests.
+- **[python-decouple](https://github.com/hynek/decouple)** (>=3.5, <4.0) - For managing environment variables.
+- **[discord.py](https://discordpy.readthedocs.io/en/stable/)** (>=2.0, <3.0) - A Python library for interacting with the Discord API to build the quiz bot.
+- **[websockets](https://websockets.readthedocs.io/en/stable/)** (>=10.0, <11.0) - WebSocket client library for real-time communication.
+- **[google-generativeai](https://pypi.org/project/google-generativeai/)** - API for integrating **Gemini** AI for dynamic quiz question generation.
+- **[requests](https://requests.readthedocs.io/en/master/)** (>=2.25, <3.0) - For making HTTP requests.
+- **[django-cors-headers](https://pypi.org/project/django-cors-headers/)** (>=3.10, <4.0) - Handles Cross-Origin Resource Sharing (CORS).
+- **[django-background-tasks](https://github.com/arteria/django-background-tasks)** (>=1.1, <2.0) - Optional for managing background tasks.
+- **[python-dotenv](https://pypi.org/project/python-dotenv/)** - To load environment variables from `.env` files.
+
+To install all required dependencies, you can run:
+
+```bash
+pip install -r requirements.txt
+```
+# Installation
+
+Follow these steps to set up and run the project locally:
+
+## 1. Clone the Repository
+
+Clone the repository from GitHub to your local machine:
+
+```bash
+git clone https://github.com/shanky2003g/Discord_QuizBot.git
+```
+## 2. Create Your Gemini API Key
+
+You will need a Gemini API key to interact with the Gemini API.
+
+1. Go to the [Gemini API Key Management page](https://gemini.com/api).
+
+## 3. Create Your Discord Bot and Get the Bot Token
+
+You’ll need to create a Discord bot and get your bot token to authenticate and interact with the Discord API.
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+2. Log in with your Discord account.
+3. Click on **New Application**.
+4. Name your application and click **Create**.
+5. Navigate to the **Bot** tab on the left, then click **Add Bot**.
+6. Under the **Bot settings**, click **Copy** under **TOKEN** to get your bot token. 
+7. Store it securely, as you’ll need it to connect your bot.
+
+---
+
+## 4. Invite Your Bot to a Discord Server
+
+To invite your bot to a server, you will need to create an OAuth2 URL.
+
+1. In the Discord Developer Portal, go to your application page.
+2. Navigate to the **OAuth2** tab on the left.
+3. Under **OAuth2 URL Generator**, check the **bot** scope.
+4. Under **OAuth2 URL Generator**, under **Bot Permissions**, select the permissions your bot needs (e.g., "Send Messages", "Manage Messages", etc.).
+5. Copy the generated URL, then paste it into your browser.
+6. Select the server you want to invite the bot to and click **Authorize**.
+
+## 5. Get Your Authentication Tokens
+
+After setting up the Gemini API key and Discord bot, you will need to authenticate your application using the tokens.
+
+### Set the Authentication Tokens as Environment Variables
+
+To securely store your API keys and bot token, you can set them as environment variables on your machine. Open your terminal and run the following commands:
+
+```bash
+export GEMINI_API_KEY='your-api-key'
+export GEMINI_API_SECRET='your-api-secret'
+export DISCORD_BOT_TOKEN='your-discord-bot-token'
+```
+
+---
+
+## 6. Running the Server and Discord Bot
+
+### 1. Run the Django Server
+
+To start the Django development server, use the following command:
+
+```bash
+python manage.py runserver
+```
+This will start the server locally at http://127.0.0.1:8000.
+### 2. Run the Discord Bot
+```bash
+python bot.py
+```
+This will start the Discord bot and connect it to your server. The bot will now be live and able to interact with users on Discord.
+
+---
+
+## Running with Docker
+
+To run the project using Docker, follow these steps:
+
+### 1. Build the Docker Image
+
+First, you need to build the Docker image for the project. From the root of your project directory, run the following command:
+
+```bash
+docker build -t project-name .
+```
+This will build the Docker image and tag it as project-name.
+### 2. Run the Docker Container
+
+Once the image is built, you can run the Docker container using the following command:
+```bash
+docker run -d -p 8000:8000 --name project-container project-name
+```
+This will start the Django development server inside the container and expose it on port 8000 of your local machine.
