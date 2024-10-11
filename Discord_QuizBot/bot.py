@@ -8,7 +8,7 @@ import time
 from settings import BASE_DIR
 load_dotenv(BASE_DIR/".env") 
 import os
-token = str(os.getenv('TOKEN'))
+token = os.getenv('TOKEN')
 c_id = os.getenv('ID')
 # Enable necessary intents
 intents = discord.Intents.default()
