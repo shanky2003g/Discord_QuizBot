@@ -1,51 +1,101 @@
 [
     {
-        "question": "What is the correct syntax for declaring a pointer to an integer in C++?",
+        "question": "Which of the following is NOT a key principle of system design?",
         "options": {
-            "A": "int *ptr;",
-            "B": "*int ptr;",
-            "C": "int ptr*;",
-            "D": "ptr *int;"
+            "A": "Scalability",
+            "B": "Security",
+            "C": "Performance",
+            "D": "User Interface Design"
         },
-        "answer": "A"
+        "answer": "D"
     },
     {
-        "question": "Which of the following is NOT a valid C++ data type?",
+        "question": "What is the purpose of load balancing in system design?",
         "options": {
-            "A": "float",
-            "B": "string",
-            "C": "integer",
-            "D": "boolean"
-        },
-        "answer": "C"
-    },
-    {
-        "question": "What does the 'const' keyword do in C++?",
-        "options": {
-            "A": "Declares a variable that can be modified.",
-            "B": "Declares a function that can modify global variables.",
-            "C": "Declares a variable that cannot be modified after initialization.",
-            "D": "Declares a function that cannot be called from other files."
-        },
-        "answer": "C"
-    },
-    {
-        "question": "Which operator is used to access members of a class in C++?",
-        "options": {
-            "A": "->",
-            "B": ".",
-            "C": "::",
-            "D": "@"
+            "A": "To prevent unauthorized access",
+            "B": "To distribute traffic evenly across multiple servers",
+            "C": "To optimize database queries",
+            "D": "To compress data for faster transmission"
         },
         "answer": "B"
     },
     {
-        "question": "What is the purpose of the 'new' operator in C++?",
+        "question": "Which data storage approach is best suited for handling large volumes of unstructured data?",
         "options": {
-            "A": "To declare a new variable.",
-            "B": "To allocate memory dynamically from the heap.",
-            "C": "To call a constructor.",
-            "D": "To delete an object from memory."
+            "A": "Relational databases",
+            "B": "NoSQL databases",
+            "C": "File systems",
+            "D": "Object storage"
+        },
+        "answer": "D"
+    },
+    {
+        "question": "What is the main purpose of a caching layer in a system design?",
+        "options": {
+            "A": "To store user authentication information",
+            "B": "To speed up data retrieval by storing frequently accessed data",
+            "C": "To prevent unauthorized access to sensitive data",
+            "D": "To compress data for efficient storage"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which of the following is a common method for handling concurrency in system design?",
+        "options": {
+            "A": "Using a single-threaded process",
+            "B": "Implementing locking mechanisms",
+            "C": "Storing data in a single file",
+            "D": "Using only asynchronous operations"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "What is the primary advantage of using a microservices architecture?",
+        "options": {
+            "A": "Increased security",
+            "B": "Simplified deployment",
+            "C": "Improved performance",
+            "D": "Enhanced scalability and flexibility"
+        },
+        "answer": "D"
+    },
+    {
+        "question": "Which of the following is NOT a common factor to consider when designing an API?",
+        "options": {
+            "A": "Versioning",
+            "B": "Authentication",
+            "C": "Data compression",
+            "D": "Error handling"
+        },
+        "answer": "C"
+    },
+    {
+        "question": "What is the purpose of a message queue in a system design?",
+        "options": {
+            "A": "To store user login information",
+            "B": "To handle asynchronous communication between different components",
+            "C": "To compress data for efficient storage",
+            "D": "To ensure data consistency across multiple servers"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "Which of the following is a key consideration when designing for high availability?",
+        "options": {
+            "A": "Using a single server for all services",
+            "B": "Implementing redundancy and failover mechanisms",
+            "C": "Storing all data in a single location",
+            "D": "Disabling user authentication for faster access"
+        },
+        "answer": "B"
+    },
+    {
+        "question": "What is the main purpose of a load balancer in system design?",
+        "options": {
+            "A": "To prevent unauthorized access",
+            "B": "To distribute traffic evenly across multiple servers",
+            "C": "To optimize database queries",
+            "D": "To compress data for faster transmission"
         },
         "answer": "B"
     }
