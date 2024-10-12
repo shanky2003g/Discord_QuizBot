@@ -175,7 +175,7 @@ async def set(ctx, set_number: str):
             await ctx.send(question_message, view = view)
             # Wait for either the user to press any button or 5 seconds to pass
             try:
-                await asyncio.wait_for(view.wait(), timeout=5.0)
+                await asyncio.wait_for(view.wait(), timeout=10.0)
             except asyncio.TimeoutError:
                 await ctx.send("Time's up! Moving to the next question.")
                 view.stop()

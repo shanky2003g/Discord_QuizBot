@@ -1,4 +1,4 @@
-# Quizzy
+# Quizzy    
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@
 
 This project consists of two main components: a **Discord Quiz Bot** and a **Quiz Management Application**. The goal is to create an interactive quiz experience for users on Discord while providing a web-based interface for admins to manage quizzes and questions.
 
-### Discord Quiz Bot
+### Discord Quiz Bot   [Bot demo](https://drive.google.com/file/d/1GUkRYxtZMVVFOnZTVKVyWq_4ZhoE7koT/view?usp=sharing)
 
 The **Discord Quiz Bot** enables users to participate in quizzes directly within Discord servers. Key features include:
 
